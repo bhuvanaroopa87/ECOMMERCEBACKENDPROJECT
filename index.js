@@ -21,8 +21,8 @@ const employerrouter = require('./routes/employers');
 const homerouter = require('./routes/home');
 const authrouter = require('./routes/auth');
 
-//Connecting to th Database
-mongoose.connect("mongodb://localhost/ecommercebackend")
+//Connecting to the Database
+mongoose.connect("mongodb://localhost/ecommercebackend_test")
         .then(() => console.log("Successfully connected to mongodb...."))
         .catch((err)=> console.log("Failed to connect to db....", err));
 
@@ -52,8 +52,8 @@ app.use(express.static("public"));
     logger.error("unhandledRejection occured :",ex);
  });
  
-const p = Promise.reject(new Error("Asynchronous error occured "));
-p.then(() => console.log("DONE"));
+//const p = Promise.reject(new Error("Asynchronous error occured "));
+//p.then(() => console.log("DONE"));
   
 //third party middlewares
 app.use(morgan("tiny"));
@@ -72,4 +72,5 @@ console.log("app name: " ,config.get("app.name"));
 console.log("mail server host:" ,config.get("mail.host"));
 
 const port = process.env.ECBPORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+const server =app.listen(port, () => console.log(`Listening on port ${port}...`));
+module.exports = server;
