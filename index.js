@@ -22,7 +22,7 @@ const homerouter = require('./routes/home');
 const authrouter = require('./routes/auth');
 
 //Connecting to the Database
-mongoose.connect("mongodb://localhost/ecommercebackend_test")
+mongoose.connect(config.get('db.host'))
         .then(() => console.log("Successfully connected to mongodb...."))
         .catch((err)=> console.log("Failed to connect to db....", err));
 
